@@ -33,7 +33,7 @@
            
             steps{
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com','docker_hub_login'){
+                    docker.withRegistry('https://registry.hub.docker.com','dockerhub_ID'){
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
