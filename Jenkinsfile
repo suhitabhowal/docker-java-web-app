@@ -48,7 +48,7 @@
                 kubeconfigId: 'kubeconfig',
                 configs: 'application.yaml',
                 enableConfigSubstitution: true)
-                echo 'Appp url: http://54.186.233.130:30005/app'
+                echo 'App url: http://54.186.233.130:30005/app'
           }
                      
         }
