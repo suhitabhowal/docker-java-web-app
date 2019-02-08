@@ -20,7 +20,7 @@
                        
             steps {
                 script {
-                    app = docker.build("suhita/phoenix2.0")
+                    app = docker.build("suhitabhowal/phoenix2.0")
                     app.inside {
                         sh 'echo $(curl localhost:80)'
                     }
