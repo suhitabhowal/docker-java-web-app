@@ -120,9 +120,9 @@ main () {
     running_containers=1
   fi
 
-  for test in tests/*.sh; do
-    . ./"$test"
-  done
+  #for test in tests/*.sh; do
+   # . ./"$test"
+  #done
 
   if [ -z "$check" ] && [ ! "$checkexclude" ]; then
     cis
