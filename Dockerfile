@@ -24,8 +24,8 @@ RUN \
     dumb-init && \
   rm -rf /usr/bin/docker?*
 
-COPY ./*.sh /usr/local/bin/
-COPY ./tests/*.sh /usr/local/bin/tests/
+COPY ./*.* /usr/local/bin/
+#COPY ./tests/*.* /usr/local/bin/tests/
 
 HEALTHCHECK CMD exit 0
 
