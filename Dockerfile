@@ -8,28 +8,18 @@ RUN cp -Rv /tmp/apache-tomcat-8.5.37/* /usr/local/tomcat/
 EXPOSE 8080
 ADD target/app.war /usr/local/tomcat/webapps/
 CMD /usr/local/tomcat/bin/catalina.sh run
-FROM alpine:3.8
-LABEL \
-  org.label-schema.name="docker-bench-security" \
-  org.label-schema.url="https://dockerbench.com" \
-  org.label-schema.vcs-url="https://github.com/docker/docker-bench-security.git"
+# REPOSITORY https://github.com/fatherlinux/docker-bench-security
 
-# Switch to the HTTPS endpoint for the apk repositories
-# https://github.com/gliderlabs/docker-alpine/issues/184
-RUN \
-  sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories && \
-  apk add --no-cache \
-    iproute2 \
-    docker \
-    dumb-init && \
-  rm -rf /usr/bin/docker?*
+FROM centos
 
-COPY ./*.* /usr/local/bin/
-#COPY ./tests/*.* /usr/local/bin/tests/
+MAINTAINER smccarty@redhat.com
 
-HEALTHCHECK CMD exit 0
+RUN yum install -y docker iproute audit procps-ng; yum clean all
 
-WORKDIR /usr/local/bin
+RUN mkdir /docker-bench-security
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "docker-bench-security.sh" ]
-CMD [""]
+COPY . /docker-bench-security
+
+WORKDIR /docker-bench-security
+
+ENTRYPOINT ["/bin/sh", "docker-bench-security.sh"]
