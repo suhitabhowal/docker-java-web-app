@@ -45,7 +45,7 @@
         {
                      steps   {
 
-                                sh "mvn sonar:sonar -Dsonar.host.url=http://54.186.233.130:30002"
+                                sh "mvn sonar:sonar -Dsonar.host.url=http://54.188.213.9:30002"
                         }
         }
 
